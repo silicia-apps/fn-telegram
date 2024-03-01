@@ -58,14 +58,15 @@ export default async ({ req, res, log, error }: Context) => {
             bot.help((ctx) => ctx.reply('scrivi /io per recuperare il numero di chat'));
             bot.command('io', (ctx) => ctx.reply('il tuo codice è : ' + ctx.message.chat.id.toString()));
             bot.launch();
-            process.once('SIGINT', () => bot.stop('SIGINT'))
-            process.once('SIGTERM', () => bot.stop('SIGTERM'))
+            
         } else {
             if (req.method === "GET") {
                 return res.send('Wrong Secret');
             }
         }
     } catch (e) {
+        process.once('SIGINT', () => bot.stop('SIGINT'))
+        process.once('SIGTERM', () => bot.stop('SIGTERM'))
         error('Si è verificato un errore');
         error(e);
     }
