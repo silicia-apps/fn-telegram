@@ -20,7 +20,7 @@ type Context = {
 export default async ({ req, res, log, error }: Context) => {
 
     const secret = req.query.secret;
-    const postazione: String = req.query.postazione;
+    const radio: String = req.query.radio;
     const silenzio = (req.query.silenzio) ? true : false;
 
     const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
@@ -28,7 +28,7 @@ export default async ({ req, res, log, error }: Context) => {
 
         if (secret === process.env.SECRET) {
             const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
-            const msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione radio ' + postazione.replace('+', ' ');
+            const msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione radio ' + radio.replace('+', ' ');
             if (process.env.CHAT01) {
                 log('invio ' + msg + ' a ' + process.env.CHAT01)
                 bot.telegram.sendMessage(process.env.CHAT01, msg);
