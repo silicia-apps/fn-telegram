@@ -1,0 +1,20 @@
+{
+  "name": "fn-telegram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write .",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "node-appwrite": "^9.0.0",
+    "telegraf": "^4.16.3",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "prettier": "^3.2.5"
+  }
+}
