@@ -28,7 +28,7 @@ export default async ({ req, res, log, error }: Context) => {
 
         if (secret === process.env.SECRET) {
             const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
-            const msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + postazione.replace('+', ' ');
+            const msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione radio ' + postazione.replace('+', ' ');
             if (process.env.CHAT01) {
                 log('invio ' + msg + ' a ' + process.env.CHAT01)
                 bot.telegram.sendMessage(process.env.CHAT01, msg);
