@@ -19,8 +19,8 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
 
-const secret = encodeURIComponent(req.query.secret);
-error(encodeURIComponent(req.query.postazione));
+const secret =req.query.secret.toString();
+error(req.query.postazione.toString());
 log(secret);
 
 if (secret === 'giordano') {
