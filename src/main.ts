@@ -19,7 +19,7 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
 
-log(JSON.stringify(req));
+error(JSON.stringify(req));
 
 const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
 
