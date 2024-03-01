@@ -19,8 +19,8 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
 
-error(req.query.postazione);
-log(res.query.secret);
+error(encodeURIComponent(req.query.postazione));
+log(req.query.secret);
 
 const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
 
