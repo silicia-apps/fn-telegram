@@ -19,12 +19,24 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
 
-error(decodeURIComponent(req.query.postazione));
-log(decodeURIComponent(req.query.secret));
+const secret = encodeURIComponent(req.query.secret);
+error(encodeURIComponent(req.query.postazione));
+log(secret);
 
-const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
+if (secret === 'giordano') {
+    const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
+    bot.telegram.sendMessage('7045034835','test');
+    process.once('SIGINT', () => bot.stop('SIGINT'))
+    process.once('SIGTERM', () => bot.stop('SIGTERM'))
+    if (req.method === "GET") {
+        return res.send('message send');
+    }
+}  else {
+    if (req.method === "GET") {
+        return res.send('Wrong Secret');
+    }
+}
 
-bot.telegram.sendMessage('7045034835','test');
 //bot.telegram.sendMessage('103720843','test2');
 /*bot.start((ctx) => {
     ctx.reply('Ciao, Benvenuto');
@@ -35,17 +47,7 @@ bot.hears('ciao', (ctx) => ctx.reply('Suca Davide'))
 //bot.command('oldschool', (ctx) => ctx.reply('Hello'))
 
 bot.launch();*/
-process.once('SIGINT', () => bot.stop('SIGINT'))
-process.once('SIGTERM', () => bot.stop('SIGTERM'))
 
-if (req.method === "GET") {
-    return res.send('message send');
-}
  
-return res.json({
-    motto: "Build like a team of hundreds_",
-    learn: "https://appwrite.io/docs",
-    connect: "https://appwrite.io/discord",
-    getInspired: "https://builtwith.appwrite.io",
-  });
+
 };
