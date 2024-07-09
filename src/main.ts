@@ -30,10 +30,11 @@ export default async ({ req, res, log, error }: Context) => {
 
         if (secret === process.env.SECRET) {
             const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
+            var msg = '';
             if (postazione && silenzio && input) {
-                const msg = ((silenzio)? 'Assenza' : 'Presenza') + ' ' + input + ' nella postazione ' + postazione;
+                msg = ((silenzio)? 'Assenza' : 'Presenza') + ' ' + input + ' nella postazione ' + postazione;
             } else {
-                const msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + radio.replace('+', ' ');
+                msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + radio.replace('+', ' ');
             }
             if (process.env.CHAT01) {
                 log('invio ' + msg + ' a ' + process.env.CHAT01)
