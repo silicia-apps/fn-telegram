@@ -22,7 +22,7 @@ export default async ({ req, res, log, error }: Context) => {
     const secret = req.query.secret;
     const radio: String = req.query.radio;
     const silenzio = (req.query.silenzio) ? true : false;
-    const postazione = req.query.postazione;
+    const controller: String = req.query.controller;
     const input = req.query.input;
 
     const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
@@ -31,8 +31,8 @@ export default async ({ req, res, log, error }: Context) => {
         if (secret === process.env.SECRET) {
             const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
             var msg = '';
-            if (postazione && silenzio && input) {
-                msg = ((silenzio)? 'Assenza' : 'Presenza') + ' ' + input + ' nella postazione ' + postazione;
+            if (controller && silenzio && input) {
+                msg = ((silenzio)? 'Assenza' : 'Presenza') + ' ' + input + ' nella sede ' + controller.replace('+', ' ');
             } else {
                 msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + radio.replace('+', ' ');
             }
