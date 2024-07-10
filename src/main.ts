@@ -24,6 +24,7 @@ export default async ({ req, res, log, error }: Context) => {
     const silenzio = (req.query.silenzio) ? true : false;
     const controller: String = req.query.controller;
     const input = req.query.input;
+    const value = req.query.input;
     
     const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
     log('cerco di capire da dove arriva messaggio');
@@ -31,9 +32,9 @@ export default async ({ req, res, log, error }: Context) => {
         if (secret === process.env.SECRET) {
             const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
             var msg = '';
-            if (input && controller && silenzio) {
+            if (input && controller && value) {
                 log('rilevato messaggio da lancontroller');
-                msg = ((silenzio)? 'Presenza' : 'Assenza') + ' ' + input + ' nella sede ' + controller.replace('_', ' ');
+                msg = ((value === 1)? 'Presenza' : 'Assenza') + ' ' + input + ' nella sede ' + controller.replace('_', ' ');
             } else {
                 log('rilevato messaggio da silence.pz');
                 msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + radio.replace('+', ' ');
