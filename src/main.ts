@@ -34,7 +34,7 @@ export default async ({ req, res, log, error }: Context) => {
             var msg = '';
             if (input && controller && value) {
                 log('rilevato messaggio da lancontroller');
-                msg = ((value === 1)? 'Presenza' : 'Assenza') + ' ' + input + ' nella sede ' + controller.replace('_', ' ');
+                msg = ((value === '1')? 'Presenza' : 'Assenza') + ' ' + input + ' nella sede ' + controller.replace('_', ' ');
             } else {
                 log('rilevato messaggio da silence.pz');
                 msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + radio.replace('+', ' ');
