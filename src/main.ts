@@ -31,7 +31,7 @@ export default async ({ req, res, log, error }: Context) => {
         if (secret === process.env.SECRET) {
             const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
             var msg = '';
-            if (controller && input) {
+            if (controller) {
                 msg = ((silenzio)? 'Assenza' : 'Presenza') + ' ' + input + ' nella sede ' + controller.replace('+', ' ');
             } else {
                 msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + radio.replace('+', ' ');
