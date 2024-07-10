@@ -24,7 +24,7 @@ export default async ({ req, res, log, error }: Context) => {
     const silenzio = (req.query.silenzio) ? true : false;
     const controller: String = req.query.controller;
     const input = req.query.input;
-    const value = req.query.input;
+    const value = req.query.value;
     
     const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
     log('cerco di capire da dove arriva messaggio');
