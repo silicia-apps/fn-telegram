@@ -24,6 +24,7 @@ export default async ({ req, res, log, error }: Context) => {
     const silenzio = (req.query.silenzio) ? true : false;
     const controller: String = req.query.controller;
     const input = req.query.input;
+    const submessage = req.query.submessage;
 
     const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
     log('cerco di capire da dove arriva messaggio');
@@ -31,9 +32,9 @@ export default async ({ req, res, log, error }: Context) => {
         if (secret === process.env.SECRET) {
             const bot = new Telegraf('6874400408:AAGq6X_RRI_A6J9v6PfMSdNMOd55BldktJI');
             var msg = '';
-            if (input) {
+            if (input && controller && submessage) {
                 log('rilevato messaggio da lancontroller');
-                msg = ((silenzio)? 'Assenza' : 'Presenza') + ' ' + input + ' nella sede ' + controller.replace('+', ' ');
+                msg = submessage + ' ' + input + ' nella sede ' + controller.replace('+', ' ');
             } else {
                 log('rilevato messaggio da silence.pz');
                 msg = ((silenzio) ? 'Assenza' : 'presenza') + ' audio trasmissione ' + radio.replace('+', ' ');
@@ -64,6 +65,7 @@ export default async ({ req, res, log, error }: Context) => {
             process.once('SIGINT', () => bot.stop('SIGINT'))
             process.once('SIGTERM', () => bot.stop('SIGTERM'))
         } else {
+            error('Wrong Secret');
             if (req.method === "GET") {
                 return res.send('Wrong Secret');
             }
