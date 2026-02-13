@@ -26,11 +26,11 @@ export default async ({ req, res, log, error }: Context) => {
     const input = req.query.input;
     const value = req.query.value;
     
-    const bot = new Telegraf(process.env.TELEGRAM_API);
+    const bot = new Telegraf(process.env.TELEGRAM_API!);
     log('cerco di capire da dove arriva messaggio');
     try {
         if (secret === process.env.SECRET) {
-            const bot = new Telegraf(process.env.TELEGRAM_API);
+            const bot = new Telegraf(process.env.TELEGRAM_API!);
             var msg = '';
             if (input && controller && value) {
                 log('rilevato messaggio da lancontroller');
